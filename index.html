@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="UTF-8">
+<title>Kelas 8 E</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05070c">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#05070c;color:#fff;overflow:hidden}
+
+/* ===== BACKGROUND FUTURISTIK ===== */
+.bg{
+  position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(circle at 20% 20%,#00ffe155,transparent 40%),
+    radial-gradient(circle at 80% 30%,#0066ff55,transparent 45%),
+    linear-gradient(120deg,#05070c,#02040a);
+  animation:bgMove 18s infinite alternate ease-in-out;
+}
+@keyframes bgMove{to{filter:hue-rotate(40deg)}}
+.bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:60px 60px;opacity:.15;
+}
+
+/* ===== INTRO ===== */
+#intro{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;justify-content:center;align-items:center;
+  background:black;transition:1.2s;
+}
+#intro.hide{opacity:0;pointer-events:none}
+#intro video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;filter:brightness(.35) saturate(1.3);
+}
+#enter{
+  padding:22px 72px;letter-spacing:10px;
+  background:rgba(0,0,0,.55);color:#fff;
+  border:1px solid rgba(255,255,255,.6);
+  cursor:pointer;backdrop-filter:blur(14px);
+  position:relative;overflow:hidden;z-index:2;
+  transition:.6s;box-shadow:0 0 60px #00ffe155;
+}
+#enter:hover{
+  background:#fff;color:#000;letter-spacing:14px;
+  box-shadow:0 0 100px #00ffe1;
+}
+#enter:active::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle,#fff 12%,transparent 12%);
+  transform:scale(6);opacity:.25;transition:.6s;
+}
+
+/* ===== MAIN ===== */
+#main{display:none}
+
+/* ===== HERO ===== */
+.hero{
+  height:100vh;display:flex;
+  justify-content:center;align-items:center;
+  text-align:center;
+}
+.hero h1 span{
+  display:inline-block;font-size:76px;
+  letter-spacing:10px;opacity:0;
+  transform:translateY(60px);
+  animation:reveal 1s forwards;
+  text-shadow:0 0 50px #00ffe1;
+}
+.hero h1 span:nth-child(1){animation-delay:.3s}
+.hero h1 span:nth-child(2){animation-delay:.5s}
+.hero h1 span:nth-child(3){animation-delay:.7s}
+@keyframes reveal{to{opacity:1;transform:none}}
+.hero p{margin-top:22px;letter-spacing:4px;opacity:.7}
+
+/* ===== SECTION ===== */
+section{padding:120px 20px;max-width:1200px;margin:auto}
+.title{
+  font-size:40px;margin-bottom:80px;position:relative;
+}
+.title::after{
+  content:'';position:absolute;left:0;bottom:-18px;
+  width:120px;height:3px;
+  background:linear-gradient(90deg,#00ffe1,#0066ff);
+}
+
+/* ===== CARDS FOTO ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
+}
+.card{
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(16px);
+  border-radius:22px;
+  overflow:hidden;
+  transition:.8s;
+  transform:translateY(80px);
+  opacity:0;
+}
+.card.show{transform:none;opacity:1}
+.card img{
+  width:100%;height:300px;object-fit:cover;
+  transition:1.2s;
+}
+.card:hover img{transform:scale(1.15)}
+.card-content{padding:26px}
+.card h3{font-size:22px;margin-bottom:6px}
+.card span{font-size:13px;opacity:.6}
+
+/* ===== STRUKTUR ===== */
+.structure{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+.role{
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(16px);
+  border-radius:22px;
+  padding:30px;
+  transition:.6s;
+  transform:translateY(80px);
+  opacity:0;
+}
+.role.show{transform:none;opacity:1}
+.role:hover{
+  transform:translateY(-12px) scale(1.05);
+  box-shadow:0 0 70px #00ffe177;
+}
+.role h3{font-size:14px;letter-spacing:3px;opacity:.6}
+.role h2{
+  margin-top:12px;font-size:22px;
+  background:linear-gradient(90deg,#00ffe1,#6aa8ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ===== WA CTA ===== */
+.wa-channel{
+  position:fixed;bottom:26px;right:26px;
+  background:linear-gradient(135deg,#25D366,#1ebe5d);
+  color:#fff;padding:14px 22px;border-radius:40px;
+  font-size:14px;text-decoration:none;
+  z-index:9999;display:flex;align-items:center;gap:12px;
+  box-shadow:0 0 30px rgba(37,211,102,.7);
+  transition:.4s;
+}
+.wa-channel:hover{
+  transform:translateY(-6px) scale(1.05);
+  box-shadow:0 0 60px rgba(37,211,102,1);
+}
+.wa-ping{
+  width:12px;height:12px;background:#fff;border-radius:50%;
+  position:relative;
+}
+.wa-ping::after{
+  content:'';position:absolute;inset:-8px;
+  border-radius:50%;border:2px solid rgba(255,255,255,.7);
+  animation:ping 1.6s infinite;
+}
+@keyframes ping{
+  0%{transform:scale(.4);opacity:1;}
+  100%{transform:scale(1.5);opacity:0;}
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;padding:60px 20px;
+  opacity:.5;border-top:1px solid rgba(255,255,255,.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<!-- AUDIO -->
+<audio id="introAudio" preload="auto">
+  <source src="../MTCztxmz6LEh.io/GBjL2fOY3dyX.mp4" type="audio/mp4">
+</audio>
+
+<!-- INTRO -->
+<div id="intro">
+  <video autoplay="" muted="" loop="">
+    <source src="../aPHELujcMfFX.io/f1H4YZg7wP5k.mp4" type="video/mp4">
+  </video>
+  <button id="enter">ENTER</button>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+<div class="hero">
+  <div>
+    <h1><span>KELAS</span><span>6</span><span>A</span></h1>
+    <p> Creative • Asik • Solid</p>
+  </div>
+</div>
+
+<section>
+  <div class="title">Wali Kelas</div>
+  <div class="cards">
+    <div class="card">
+      <img src="../MTCztxmz6LEh.io/Qc9wVbCbCNzr.jpg">
+      <div class="card-content">
+        <h3>Wali Kelas 8 E</h3>
+        <span>Pembimbing & Teladan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="title">Siswa & Siswi</div>
+  <div class="cards">
+    <div class="card">
+      <img src="https://cdn.nekohime.site/file/dghwlGMx.jpg">
+      <div class="card-content">
+        <h3>Kelas Cewe</h3>
+        <span>Kompak • Aktif</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://cdn.nekohime.site/file/IrD6tGJU.jpg">
+      <div class="card-content">
+        <h3>Kelas Cowo</h3>
+        <span>Solid • Seru</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="title">Struktur Kelas</div>
+  <div class="structure">
+    <div class="role"><h3>KETUA</h3><h2>Redya P. Kayla</h2></div>
+    <div class="role"><h3>WAKIL 1</h3><h2>Excel J. Shevy</h2></div>
+    <div class="role"><h3>WAKIL 2</h3><h2>Yeyen Selviana</h2></div>
+    <div class="role"><h3>SEKRETARIS 1</h3><h2>Aulia Sarah</h2></div>
+    <div class="role"><h3>SEKRETARIS 2</h3><h2>Raakan S. Buana</h2></div>
+  </div>
+</section>
+
+<footer>© 2026 Kelas 8E</footer>
+</div>
+
+<!-- WA CTA -->
+<a href="https://whatsapp.com/channel/" target="_blank" class="wa-channel">
+  <span class="wa-ping"></span>
+  Klik disini untuk join saluran official kami
+</a>
+
+<script>
+const intro=document.getElementById('intro');
+const main=document.getElementById('main');
+const audio=document.getElementById('introAudio');
+const reveal=document.querySelectorAll('.card,.role');
+
+document.getElementById('enter').onclick=()=>{
+  audio.volume=.8;audio.play();
+  intro.classList.add('hide');
+  setTimeout(()=>{
+    intro.style.display='none';
+    main.style.display='block';
+    document.body.style.overflow='auto';
+  },1200);
+};
+
+window.addEventListener('scroll',()=>{
+  const t=window.innerHeight*.85;
+  reveal.forEach(e=>{
+    if(e.getBoundingClientRect().top<t) e.classList.add('show');
+  });
+});
+</script>
+
+
+
+</body></html>
